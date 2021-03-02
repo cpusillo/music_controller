@@ -9,6 +9,9 @@ def generate_unique_code():
     while True:
         # Generate a random code, all uppercase with a length of 6 as declared above
         code = ''.join(random.choices(string.ascii_uppercase, k=length))
+        if Room.objects.filter(code=code).count() == 0:
+            break
+    return code
 
 # Create your models here.
 class Room(models.Model):
